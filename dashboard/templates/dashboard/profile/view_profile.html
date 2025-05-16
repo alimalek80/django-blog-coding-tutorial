@@ -1,0 +1,23 @@
+<!-- templates/dashboard/profile/view_profile.html -->
+{% extends "base.html" %}
+{% block title %}{{ profile.user.email }}'s Profile{% endblock %}
+{% block content %}
+<h2>{{ profile.user.email }}'s Profile</h2>
+
+{% if profile.image %}
+<img src="{{ profile.image.url }}" width="100" alt="Profile Image"><br><br>
+{% endif %}
+
+<p><strong>Phone:</strong> {{ profile.phone }}</p> <!-- PRIVATE -->
+
+<p><strong>Location:</strong> {{ profile.city }}, {{ profile.country }}</p>
+
+<p><strong>LinkedIn:</strong> <a href="{{ profile.linkedin }}">{{ profile.linkedin }}</a></p>
+<p><strong>GitHub:</strong> <a href="{{ profile.github }}">{{ profile.github }}</a></p>
+<p><strong>Website:</strong> <a href="{{ profile.website }}">{{ profile.website }}</a></p>
+<p><strong>X (Twitter):</strong> <a href="{{ profile.x_account }}">{{ profile.x_account }}</a></p>
+<p><strong>WhatsApp:</strong> <a href="{{ profile.whatsapp }}">Chat on WhatsApp</a></p>
+<p><strong>Telegram:</strong> <a href="{{ profile.telegram }}">Chat on Telegram</a></p>
+
+<a href="{% url 'edit_profile' %}">Edit Profile</a>
+{% endblock %}

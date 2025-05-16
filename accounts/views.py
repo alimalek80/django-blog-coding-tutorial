@@ -6,6 +6,7 @@ from django.conf import settings
 from django.urls import reverse
 from accounts.forms import CustomUserCreationForm
 from accounts.models import EmailVerificationToken, CustomUser
+from dashboard.models import Profile
 
 
 # Create your views here.
@@ -16,8 +17,20 @@ def signin_view(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'Welcome')
-            return redirect('home')
+
+            # Check if profile exists and redirect accordingly
+            try:
+                profile = user.profile
+            except Profile.DoesNotExist:
+                profile = Profile.objects.create(user=user)
+
+            # Option1: Check if profile is incomplete
+            if not profile.city and not profile.country:
+                messages.info(request, "Please complete your profile.")
+                return redirect("edit_profile")
+            else:
+                return redirect("dashboard_home")
+
         else:
             messages.warning(request, "Wrong information")
             return redirect('signin')
@@ -76,8 +89,9 @@ def verify_email(request, token):
     # Delete the token after verification
     email_token.delete()
 
-    messages.success(request, "Email verified successfully. You can now log in.")
-    return redirect("signin")
+    messages.success(request, "Email verified successfully. Welcome to your dashboard.")
+    login(request, user)
+    return redirect("dashboard_home")
 
 def resend_verification_email(request):
     user_id = request.POST.get("user_id")

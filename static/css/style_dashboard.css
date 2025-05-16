@@ -1,0 +1,59 @@
+/* static/css/style_dashboard.css */
+body{
+    background-color: #f8f9fa;
+}
+
+.avatar-sm {
+    width: 30px;
+    height: 30px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #6f42c1;
+    color: white;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: #6f42c1;
+    color: white;
+}
+
+.card-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.card-stats i {
+    font-size: 24px;
+}
+
+.card-stats h5 {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.card-stats h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.btn-outline-secondary {
+    border-color: #ced4da;
+    color: #212121;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f4f4f4;
+    color: #212121;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
