@@ -1,0 +1,12 @@
+<!-- blog/templates/blog/token_expired.html -->
+{% extends "base.html" %}
+{% block content %}
+  <h2>Verification Link Expired</h2>
+  <p>Unfortunately, your email verification link has expired.</p>
+
+  <form method="post" action="{% url 'resend_verification_email' %}">
+    {% csrf_token %}
+    <input type="hidden" name="user_id" value="{{ user.id }}">
+    <button type="submit">Resend Verification Email</button>
+  </form>
+{% endblock %}

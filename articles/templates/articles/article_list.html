@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Article List - am.datx{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Articles</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Categories</h3>
+            <ul class="list-group">
+                {% for category in categories %}
+                    <li class="list-group-item">
+                        <a href="#" class="{% if 'articles' in request.path %}active{% endif %}">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-8">
+            {% for article in articles %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
+                        <p class="card-text">{{ article.formatted_markdown|safe|truncatewords:30 }}</p>
+                        <a href="{% url 'article_detail' article.slug %}" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="alert alert-info">No articles available.</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
