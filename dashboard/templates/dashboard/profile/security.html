@@ -1,0 +1,25 @@
+<!-- templates/dashboard/profile/security.html -->
+<div class="card">
+    <div class="card-header">
+        <h5>Security</h5>
+        <small>Update your password and security settings.</small>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+                <label for="current-password" class="form-label">Current Password</label>
+                <input type="password" id="current-password" class="form-control" placeholder="Enter your current password">
+            </div>
+            <div class="mb-3">
+                <label for="new-password" class="form-label">New Password</label>
+                <input type="password" id="new-password" class="form-control" placeholder="Enter new password">
+                <small>Password must be at least 8 characters long.</small>
+            </div>
+            <div class="mb-3">
+                <label for="confirm-password" class="form-label">Confirm New Password</label>
+                <input type="password" id="confirm-password" class="form-control" placeholder="Confirm new password">
+            </div>
+            <button type="submit" class="btn btn-primary float-end">Update Password</button>
+        </form>
+    </div>
+</div>

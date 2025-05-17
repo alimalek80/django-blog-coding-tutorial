@@ -1,0 +1,38 @@
+<!-- templates/dashboard/profile/professional.html -->
+<div class="card">
+    <div class="card-header">
+        <h5>Professional Information</h5>
+        <small>Share details about your professional background and skills.</small>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="current-occupation" class="form-label">Current Occupation</label>
+                    <input type="text" id="current-occupation" class="form-control" value="Senior Frontend Developer">
+                </div>
+                <div class="col-md-6">
+                    <label for="company" class="form-label">Company</label>
+                    <input type="text" id="company" class="form-control" value="TechCorp">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="skills" class="form-label">Skills</label>
+                <input type="text" id="skills" class="form-control" value="JavaScript, React, Node.js, TypeScript, MongoDB, Express, HTML, CSS">
+                <small>Separate each skill with a comma (e.g., JavaScript, React, Node.js)</small>
+            </div>
+            <div class="mb-3">
+                <label for="work-experience" class="form-label">Work Experience</label>
+                <textarea id="work-experience" class="form-control" rows="5">Senior Frontend Developer at TechCorp (2018-Present)
+Fullstack Developer at WebSolutions (2014-2018)</textarea>
+                <small>Include job titles, companies, and dates (e.g., Senior Developer at Tech Inc., 2020-Present)</small>
+            </div>
+            <div class="mb-3">
+                <label for="education" class="form-label">Education</label>
+                <textarea id="education" class="form-control" rows="3">BS in Computer Science, University of California, 2010-2014</textarea>
+                <small>Include degrees, institutions, and dates (e.g., BS in Computer Science, University, 2014-2018)</small>
+            </div>
+            <button type="submit" class="btn btn-primary float-end">Save Changes</button>
+        </form>
+    </div>
+</div>

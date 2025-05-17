@@ -1,8 +1,34 @@
-<!-- templates/dashboard/profile/view_profile.html -->
-{% extends "base.html" %}
-{% block title %}{{ profile.user.email }}'s Profile{% endblock %}
+{% extends "base-dashboard.html" %}
+{% load static %}
+{% block title %}Dashboard | am.datx{% endblock %}
 {% block content %}
 <h2>{{ profile.user.email }}'s Profile</h2>
+
+        <!-- Tabs Navigation -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a href="#basic-info" class="nav-link active" data-bs-toggle="tab">Basic Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#professional" class="nav-link" data-bs-toggle="tab">Professional</a>
+        </li>
+        <li class="nav-item">
+            <a href="#security" class="nav-link" data-bs-toggle="tab">Security</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content mt-3">
+        <div id="basic-info" class="tab-pane fade show active">
+            {% include 'dashboard/profile/basic_info.html' %}
+        </div>
+        <div id="professional" class="tab-pane fade">
+            {% include 'dashboard/profile/professional.html' %}
+        </div>
+        <div id="security" class="tab-pane fade">
+            {% include 'dashboard/profile/security.html' %}
+        </div>
+    </div>
 
 {% if profile.image %}
 <img src="{{ profile.image.url }}" width="100" alt="Profile Image"><br><br>

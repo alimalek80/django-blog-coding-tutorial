@@ -1,0 +1,58 @@
+<!-- templates/dashboard/profile/basic_info.html -->
+<div class="card">
+    <div class="card-header">
+        <h5>Basic Information</h5>
+        <small>Update your personal information and contact details.</small>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="full-name" class="form-label">Full Name</label>
+                    <input type="text" id="full-name" class="form-control" value="John Doe">
+                </div>
+                <div class="col-md-6">
+                    <label for="email-address" class="form-label">Email Address</label>
+                    <input type="email" id="email-address" class="form-control" value="john.doe@example.com" readonly>
+                    <small>Contact admin to change your email address.</small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" id="location" class="form-control" value="San Francisco, CA">
+                </div>
+                <div class="col-md-6">
+                    <label for="birthdate" class="form-label">Birthdate</label>
+                    <input type="date" id="birthdate" class="form-control" value="1990-05-15">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea id="bio" class="form-control" rows="3">Full-stack developer with 5 years of experience. Passionate about React, Node.js, and building intuitive web applications.</textarea>
+            </div>
+            <h5 class="mt-4">Social Links</h5>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="personal-website" class="form-label">Personal Website</label>
+                    <input type="url" id="personal-website" class="form-control" value="https://johndoe.dev ">
+                </div>
+                <div class="col-md-6">
+                    <label for="github" class="form-label">GitHub</label>
+                    <input type="text" id="github" class="form-control" value="johndoe">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="twitter" class="form-label">Twitter</label>
+                    <input type="text" id="twitter" class="form-control" value="johndoe">
+                </div>
+                <div class="col-md-6">
+                    <label for="linkedin" class="form-label">LinkedIn</label>
+                    <input type="text" id="linkedin" class="form-control" value="john-doe">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary float-end">Save Changes</button>
+        </form>
+    </div>
+</div>
