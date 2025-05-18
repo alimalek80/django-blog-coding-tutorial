@@ -35,3 +35,18 @@ class EmailVerificationToken(models.Model):
     def create_token_for_user(cls, user):
         token = get_random_string(64)
         return cls.objects.create(user=user, token=token)
+
+class PasswordResetToken(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    token = models.CharField(max_length=64, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+
+    def is_valid(self):
+        # Token expires after 24 hours
+        return not self.is_used and (timezone.now() <= self.created_at + timedelta(hours=24))
+
+    @classmethod
+    def create_token(cls, user):
+        token = get_random_string(64)
+        return cls.objects.create(user=user, token=token)

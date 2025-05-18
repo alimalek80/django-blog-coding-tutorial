@@ -7,30 +7,110 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.conf import settings
 from django.urls import reverse
-from accounts.forms import CustomUserCreationForm
-from accounts.models import EmailVerificationToken, CustomUser
+from accounts.forms import CustomUserCreationForm, PasswordResetRequestForm, PasswordResetConfirmForm
+from accounts.models import EmailVerificationToken, CustomUser, PasswordResetToken
 from dashboard.models import Profile
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.hashers import check_password
+import json
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
+def password_reset_request(request):
+    if request.method == "POST":
+        form = PasswordResetRequestForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            user = CustomUser.objects.get(email=email)
 
+            # Delete any old tokens
+            PasswordResetToken.objects.filter(user=user).delete()
+
+            # Generate new token
+            token_obj = PasswordResetToken.create_token(user)
+
+            # Build reset URL
+            reset_url = request.build_absolute_uri(
+                reverse("password_reset_confirm", args=[token_obj.token])
+            )
+
+            # Send email
+            subject = "Password Reset Request"
+            html_message = render_to_string("accounts/password_reset_email.html", {
+                "reset_url": reset_url,
+                "user": user,
+            })
+            plain_message = strip_tags(html_message)
+            from_email = settings.DEFAULT_FROM_EMAIL
+            to_email = [user.email]
+
+            send_mail(subject, plain_message, from_email, to_email, html_message=html_message)
+
+            return redirect("password_reset_done")
+
+    else:
+        form = PasswordResetRequestForm()
+
+    return render(request, "accounts/password_reset_form.html", {"form": form})
+
+def password_reset_confirm(request, token):
+    token_obj = get_object_or_404(PasswordResetToken, token=token)
+
+    if not token_obj.is_valid():
+        messages.error(request, "The reset link is invalid or has expired.")
+        return redirect("password_reset_request")
+
+    if request.method == "POST":
+        form = PasswordResetConfirmForm(request.POST, user=token_obj.user)
+        if form.is_valid():
+            form.save()
+            token_obj.is_used = True
+            token_obj.save()
+            messages.success(request, "Your password has been reset successfully. Please log in.")
+            return redirect("signin")
+    else:
+        form = PasswordResetConfirmForm(user=token_obj.user)
+
+    return render(request, "accounts/password_reset_confirm.html", {
+        "form": form,
+        "token": token,
+    })
+
+def password_reset_done(request):
+    return render(request, "accounts/password_reset_done.html")
+
+def password_reset_complete(request):
+    return render(request, "accounts/password_reset_complete.html")
+
+@csrf_exempt
 @login_required
 def change_password(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(user=request.user, data=request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)  # Keeps user logged in
-            messages.success(request, "Your password has been successfully changed.")
-            # Build URL with fragment
-            url = reverse('profile_view') + '#security'
-            return redirect(url)
-        else:
-            messages.error(request, "Please correct the error(s) below.")
-            url = reverse('profile_view') + '#security'
-            return redirect(url)
-    else:
-        form = PasswordChangeForm(user=request.user)
+        try:
+            data = json.loads(request.body)
+            current_password = data.get('current_password')
+            new_password = data.get('new_password')
+            user = request.user
 
-    return render(request, 'dashboard/profile/security.html', {'form': form})
+            # Check if the current password is correct
+            if not check_password(current_password, user.password):
+                return JsonResponse({'success': False, 'message': 'Current password is incorrect.'}, status=400)
+
+            # Set and save the new password
+            user.set_password(new_password)
+            user.save()
+            update_session_auth_hash(request, user)  # Keep user logged in
+
+            return JsonResponse({'success': True})
+
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)}, status=400)
+
+    return JsonResponse({'success': False, 'message': 'Invalid request method.'}, status=400)
 
 def signin_view(request):
     if request.method == 'POST':
