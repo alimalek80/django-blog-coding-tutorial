@@ -1,3 +1,6 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login,logout
@@ -9,7 +12,26 @@ from accounts.models import EmailVerificationToken, CustomUser
 from dashboard.models import Profile
 
 
-# Create your views here.
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)  # Keeps user logged in
+            messages.success(request, "Your password has been successfully changed.")
+            # Build URL with fragment
+            url = reverse('profile_view') + '#security'
+            return redirect(url)
+        else:
+            messages.error(request, "Please correct the error(s) below.")
+            url = reverse('profile_view') + '#security'
+            return redirect(url)
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+    return render(request, 'dashboard/profile/security.html', {'form': form})
+
 def signin_view(request):
     if request.method == 'POST':
         email = request.POST.get("email")

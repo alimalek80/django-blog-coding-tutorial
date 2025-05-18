@@ -8,5 +8,6 @@ urlpatterns = [
     path('register/', views.register_view, name='register'),
     path("verify-email/<str:token>/", views.verify_email, name="verify_email"),
     path("resend-verification-email/", views.resend_verification_email, name="resend_verification_email"),
+    path("change-password/", views.change_password, name="change_password"),
 
 ]

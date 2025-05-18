@@ -7,11 +7,21 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['user']
         fields = [
-            'image', 'phone', 'city', 'country',
-            'linkedin', 'github', 'website', 'x_account'
+            'image', 'full_name', 'phone', 'city', 'country',
+            'birthdate', 'bio',
+            'linkedin', 'github', 'website', 'x_account', 'telegram'
         ]
         labels = {
-            'x_account': 'X (Twitter)',
-            'whatsapp': 'WhatsApp',
-            'telegram': 'Telegram'
+            'x_account': 'X(Twitter)',
+            'image': 'Profile Image',
+            'full_name': 'Full Name',
+            'phone': 'Phone Number',
+            'city': 'City',
+            'country': 'Country',
+            'birthdate': 'Birth Date',
+            'bio': 'Bio',
+            'linkedin': 'LinkedIn',
+            'github': 'Github',
+            'website': 'Website',
+            'telegram': 'Telegram ID',
         }

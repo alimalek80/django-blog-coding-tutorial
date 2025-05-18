@@ -5,53 +5,129 @@
         <small>Update your personal information and contact details.</small>
     </div>
     <div class="card-body">
-        <form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="full-name" class="form-label">Full Name</label>
-                    <input type="text" id="full-name" class="form-control" value="John Doe">
+                    <label for="full_name" class="form-label">{{ form.full_name.label }}</label>
+                    <input type="text" class="form-control" id="full_name" name="full_name"
+                           value="{{ form.full_name.value|default_if_none:'' }}">
+                    {% if form.full_name.errors %}
+                        <div class="text-danger">{{ form.full_name.errors|first }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="email-address" class="form-label">Email Address</label>
-                    <input type="email" id="email-address" class="form-control" value="john.doe@example.com" readonly>
-                    <small>Contact admin to change your email address.</small>
+                    <label for="email_address" class="form-label">Email Address</label>
+                    <input type="email" id="email_address" class="form-control" value="{{ request.user.email }}"
+                           readonly>
+                    <small>
+                        <a href="mailto:admin@example.com?subject=Request%20to%20Change%20Email&body=Dear%20Admin,%0D%0AI%20would%20like%20to%20request%20a%20change%20to%20my%20email%20address.%0D%0ACurrent%20Email:%20{{ request.user.email }}%0D%0APlease%20let%20me%20know%20the%20next%20steps.%0D%0DThanks,%0D[Your%20Name]]"
+                           class="text-decoration-none">
+                            Contact admin to change your email address.
+                        </a>
+                    </small>
                 </div>
             </div>
+
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="location" class="form-label">Location</label>
-                    <input type="text" id="location" class="form-control" value="San Francisco, CA">
+                    <label for="city" class="form-label">{{ form.city.label }}</label>
+                    <input type="text" class="form-control" id="city" name="city"
+                           value="{{ form.city.value|default_if_none:'' }}">
+                    {% if form.city.errors %}
+                        <div class="text-danger">{{ form.city.errors|first }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="birthdate" class="form-label">Birthdate</label>
-                    <input type="date" id="birthdate" class="form-control" value="1990-05-15">
+                    <label for="country" class="form-label">{{ form.country.label }}</label>
+                    <input type="text" class="form-control" id="country" name="country"
+                           value="{{ form.country.value|default_if_none:'' }}">
+                    {% if form.country.errors %}
+                        <div class="text-danger">{{ form.country.errors|first }}</div>
+                    {% endif %}
                 </div>
             </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_birthdate" class="form-label">{{ form.birthdate.label }}</label>
+                    <input type="date" class="form-control" id="id_birthdate" name="birthdate"
+                           value="{% if form.birthdate.value %}{{ form.birthdate.value|date:'Y-m-d' }}{% endif %}">
+                    {% if form.birthdate.errors %}
+                        <div class="text-danger">{{ form.birthdate.errors|first }}</div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="phone" class="form-label">{{ form.phone.label }}</label>
+                    <input type="tel" class="form-control" id="phone" name="phone"
+                           value="{{ form.phone.value|default_if_none:'' }}">
+                    {% if form.phone.errors %}
+                        <div class="text-danger">{{ form.phone.errors|first }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
             <div class="mb-3">
-                <label for="bio" class="form-label">Bio</label>
-                <textarea id="bio" class="form-control" rows="3">Full-stack developer with 5 years of experience. Passionate about React, Node.js, and building intuitive web applications.</textarea>
+                <label for="bio" class="form-label">{{ form.bio.label }}</label>
+                <textarea id="bio" class="form-control" name="bio">{{ form.bio.value|default_if_none:'' }}</textarea>
+                {% if form.bio.errors %}
+                    <div class="text-danger">{{ form.bio.errors|first }}</div>
+                {% endif %}
             </div>
+
             <h5 class="mt-4">Social Links</h5>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="personal-website" class="form-label">Personal Website</label>
-                    <input type="url" id="personal-website" class="form-control" value="https://johndoe.dev ">
+                    <label for="website" class="form-label">{{ form.website.label }}</label>
+                    <input type="url" class="form-control" id="website" name="website"
+                           value="{{ form.website.value|default_if_none:'' }}">
+                    {% if form.website.errors %}
+                        <div class="text-danger">{{ form.website.errors|first }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="github" class="form-label">GitHub</label>
-                    <input type="text" id="github" class="form-control" value="johndoe">
+                    <label for="github" class="form-label">{{ form.github.label }}</label>
+                    <input type="url" class="form-control" id="github" name="github"
+                           value="{{ form.github.value|default_if_none:'' }}">
+                    {% if form.github.errors %}
+                        <div class="text-danger">{{ form.github.errors|first }}</div>
+                    {% endif %}
                 </div>
             </div>
+
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="twitter" class="form-label">Twitter</label>
-                    <input type="text" id="twitter" class="form-control" value="johndoe">
+                    <label for="x_account" class="form-label">{{ form.x_account.label }}</label>
+                    <input type="url" class="form-control" id="x_account" name="x_account"
+                           value="{{ form.x_account.value|default_if_none:'' }}">
+                    {% if form.x_account.errors %}
+                        <div class="text-danger">{{ form.x_account.errors|first }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="linkedin" class="form-label">LinkedIn</label>
-                    <input type="text" id="linkedin" class="form-control" value="john-doe">
+                    <label for="linkedin" class="form-label">{{ form.linkedin.label }}</label>
+                    <input type="url" class="form-control" id="linkedin" name="linkedin"
+                           value="{{ form.linkedin.value|default_if_none:'' }}">
+                    {% if form.linkedin.errors %}
+                        <div class="text-danger">{{ form.linkedin.errors|first }}</div>
+                    {% endif %}
                 </div>
             </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_telegram" class="form-label">{{ form.telegram.label }}</label>
+                    <input type="text" class="form-control" id="id_telegram" name="telegram"
+                           value="{{ form.telegram.value|default_if_none:'' }}"
+                           placeholder="e.g., @username or 123456789">
+                    {% if form.telegram.errors %}
+                        <div class="text-danger">{{ form.telegram.errors|first }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary float-end">Save Changes</button>
         </form>
     </div>

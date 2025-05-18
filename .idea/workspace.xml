@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68398dc6-e433-4971-9b2e-e702b51da111" name="Changes" comment="make dashboard and profile">
-      <change afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/basic_info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/professional.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/security.html" afterDir="false" />
+    <list default="true" id="68398dc6-e433-4971-9b2e-e702b51da111" name="Changes" comment="- modify navbar links&#10;- design the front-end of profile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/basic_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/basic_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/security.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/security.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/view_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/profile/view_profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/main_dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/main_dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +25,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -121,7 +123,8 @@
       <workItem from="1747137814714" duration="8214000" />
       <workItem from="1747306039978" duration="8771000" />
       <workItem from="1747378842745" duration="18550000" />
-      <workItem from="1747480930896" duration="2716000" />
+      <workItem from="1747480930896" duration="3578000" />
+      <workItem from="1747552441453" duration="14685000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -139,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747431885779</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- modify navbar links&#10;- design the front-end of profile">
+      <option name="closed" value="true" />
+      <created>1747484487260</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747484487260</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +159,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="make dashboard and profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="make dashboard and profile" />
+    <MESSAGE value="- modify navbar links&#10;- design the front-end of profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="- modify navbar links&#10;- design the front-end of profile" />
   </component>
 </project>
