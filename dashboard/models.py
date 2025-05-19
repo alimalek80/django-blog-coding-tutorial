@@ -2,6 +2,11 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+def user_profile_image_path(instance, filename):
+    # Always save as user_{id}.jpg
+    ext = filename.split('.')[-1]
+    return f"profiles/user_{instance.user.id}_profile.{ext}"
+
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
@@ -9,10 +14,17 @@ class Profile(models.Model):
         related_name='profile'
     )
 
+    # Use fallback image as default
+    image = models.ImageField(
+        _('Profile Image'),
+        upload_to=user_profile_image_path,
+        blank=True,
+        default='profiles/fallback-profile-image.jpg'
+    )
+
     #private field
     phone = models.CharField(_('phone'), max_length=20, blank=True)
     # Public profile fields
-    image = models.ImageField(_('Profile Image'), upload_to='profiles/', blank=True)
     linkedin = models.URLField(_('LinkedIn'), blank=True)
     github = models.URLField(_('GitHub'), blank=True)
     website = models.URLField(_('Website'), blank=True)

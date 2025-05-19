@@ -148,3 +148,18 @@ MARKDOWNX_UPLOAD_CONTENT_TYPES = ['image/jpeg', 'image/png', 'image/gif']
 MARKDOWNX_UPLOAD_MAX_SIZE = 5 * 1024 * 1024  # 5 MB limit
 
 SITE_ID = 1  # Required for markdownx
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'dashboard.views': {  # Or use 'root' for global logging
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
