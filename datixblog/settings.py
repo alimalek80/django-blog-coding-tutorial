@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'events',
     'articles',
     'dashboard',
+    'widget_tweaks',
 
 ]
 
