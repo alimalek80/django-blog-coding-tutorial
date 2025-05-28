@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68398dc6-e433-4971-9b2e-e702b51da111" name="Changes" comment="Create markdown preview tab base by bootstrap for create article template">
-      <change afterPath="$PROJECT_DIR$/articles/templates/articles/add_category_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/templates/articles/add_subcategory_form.html" afterDir="false" />
+    <list default="true" id="68398dc6-e433-4971-9b2e-e702b51da111" name="Changes" comment="- adding Category and subCategory from the front&#10;- Modify the forms.py and add CategoryForm and SubCategoryForm class&#10;- make views for adding Category and SubCategory&#10;- Create templates of add_category_form.html and add_subcategory_form.html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/articles/templates/articles/create_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/articles/templates/articles/create_article.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/articles/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/articles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +124,7 @@
       <workItem from="1747480930896" duration="3578000" />
       <workItem from="1747552441453" duration="42594000" />
       <workItem from="1747901032265" duration="3035000" />
-      <workItem from="1748382693809" duration="12240000" />
+      <workItem from="1748382693809" duration="15340000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -194,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748435506427</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="- adding Category and subCategory from the front&#10;- Modify the forms.py and add CategoryForm and SubCategoryForm class&#10;- make views for adding Category and SubCategory&#10;- Create templates of add_category_form.html and add_subcategory_form.html">
+      <option name="closed" value="true" />
+      <created>1748443697751</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1748443697751</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +213,7 @@
     <MESSAGE value="user profile picture update and delete old profile picture while upload new one" />
     <MESSAGE value="some changes" />
     <MESSAGE value="Create markdown preview tab base by bootstrap for create article template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create markdown preview tab base by bootstrap for create article template" />
+    <MESSAGE value="- adding Category and subCategory from the front&#10;- Modify the forms.py and add CategoryForm and SubCategoryForm class&#10;- make views for adding Category and SubCategory&#10;- Create templates of add_category_form.html and add_subcategory_form.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="- adding Category and subCategory from the front&#10;- Modify the forms.py and add CategoryForm and SubCategoryForm class&#10;- make views for adding Category and SubCategory&#10;- Create templates of add_category_form.html and add_subcategory_form.html" />
   </component>
 </project>

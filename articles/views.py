@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article, Category, SubCategory, Comment
 from .forms import ArticleForm, CommentForm, CategoryForm, SubCategoryForm
@@ -60,3 +61,20 @@ def add_subcategory(request):
             form.save()
     return redirect('create_article')
 
+
+def load_subcategories(request):
+    """
+    Returns subcategories for a given category_id via AJAX.
+    Accepts GET requests and returns JSON response.
+    """
+    category_id = request.GET.get('category_id')
+    try:
+        if category_id:
+            # Filter subcategories by selected category
+            subcategories = SubCategory.objects.filter(category_id=category_id).values('id', 'name')
+        else:
+            subcategories = []
+        return JsonResponse(list(subcategories), safe=False)
+    except Exception as e:
+        # Return error message in case of failure
+        return JsonResponse({'error': str(e)}, status=500)
