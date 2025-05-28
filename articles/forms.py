@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Article, Comment
+from .models import Article, Comment, Category, SubCategory
 
 
 class ArticleForm(forms.ModelForm):
@@ -16,3 +16,13 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+
+class SubCategoryForm(forms.ModelForm):
+    class Meta:
+        model = SubCategory
+        fields = ['category', 'name']

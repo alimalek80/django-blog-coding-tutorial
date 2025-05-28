@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article, Category, SubCategory, Comment
-from .forms import ArticleForm, CommentForm
+from .forms import ArticleForm, CommentForm, CategoryForm, SubCategoryForm
 
 # Create your views here.
 def articles(request):
@@ -37,4 +37,26 @@ def create_article(request):
             return redirect('article_list')
     else:
         form = ArticleForm()
-    return render(request, 'articles/create_article.html', {'form': form})
+    category_form = CategoryForm()
+    subcategory_form = SubCategoryForm()
+    return render(request, 'articles/create_article.html', {
+        'form': form,
+        'category_form': category_form,
+        'subcategory_form': subcategory_form
+    })
+
+def add_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return redirect('create_article')
+
+
+def add_subcategory(request):
+    if request.method == 'POST':
+        form = SubCategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return redirect('create_article')
+

@@ -4,96 +4,154 @@
 {% block title %}Create Article - am.datx{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1>Create New Article</h1>
+    <div class="container mt-4">
+        <h1>Create New Article</h1>
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <div class="form-group">
-            <label for="{{ form.title.id_for_label }}">Title</label>
-            {{ form.title|add_class:"form-control" }}
-        </div>
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}">Title</label>
+                {{ form.title|add_class:"form-control" }}
+            </div>
 
-        <div class="form-group">
-            <label for="{{ form.image.id_for_label }}">Image</label>
-            {{ form.image|add_class:"form-control-file" }}
-            <img id="image-preview" src="#" alt="Image Preview" class="img-fluid mt-2 d-none" style="max-height: 250px;">
+            <div class="form-group">
+                <label for="{{ form.image.id_for_label }}">Image</label>
+                {{ form.image|add_class:"form-control-file" }}
+                <img id="image-preview" src="#" alt="Image Preview" class="img-fluid mt-2 d-none"
+                     style="max-height: 250px;">
 
-        </div>
+            </div>
 
-        <div class="form-group">
-            <label for="{{ form.category.id_for_label }}">Category</label>
-            {{ form.category|add_class:"form-control" }}
-        </div>
 
-        <div class="form-group">
-            <label for="{{ form.subcategory.id_for_label }}">Subcategory</label>
-            {{ form.subcategory|add_class:"form-control" }}
-        </div>
+            <div class="form-group">
+                <label for="{{ form.category.id_for_label }}">Category</label>
+                {{ form.category|add_class:"form-control" }}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#addCategoryModal">➕ Add Category</a>
+            </div>
 
-        <div class="form-group">
-            <label for="{{ form.tags.id_for_label }}">Tags</label>
-            {{ form.tags|add_class:"form-control" }}
-        </div>
 
-        <!-- Tabbed Markdown Editor -->
-        <div class="form-group mt-4">
-            <label for="{{ form.content.id_for_label }}">Content</label>
+            <div class="form-group">
+                <label for="{{ form.subcategory.id_for_label }}">Subcategory</label>
+                {{ form.subcategory|add_class:"form-control" }}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#addSubcategoryModal">➕ Add Subcategory</a>
+            </div>
 
-            <ul class="nav nav-tabs" id="markdownTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="write-tab" data-bs-toggle="tab" data-bs-target="#write" type="button" role="tab" aria-controls="write" aria-selected="true">Write</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview" type="button" role="tab" aria-controls="preview" aria-selected="false">Preview</button>
-                </li>
-            </ul>
+            <div class="form-group">
+                <label for="{{ form.tags.id_for_label }}">Tags</label>
+                {{ form.tags|add_class:"form-control" }}
+            </div>
 
-            <div class="tab-content mt-2" id="markdownTabContent">
-                <div class="tab-pane fade show active" id="write" role="tabpanel" aria-labelledby="write-tab">
-                    {{ form.content }}
-                </div>
-                <div class="tab-pane fade p-3 border bg-light" id="preview" role="tabpanel" aria-labelledby="preview-tab">
-                    <div id="markdown-preview">Nothing to preview.</div>
+            <!-- Tabbed Markdown Editor -->
+            <div class="form-group mt-4">
+                <label for="{{ form.content.id_for_label }}">Content</label>
+
+                <ul class="nav nav-tabs" id="markdownTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="write-tab" data-bs-toggle="tab" data-bs-target="#write"
+                                type="button" role="tab" aria-controls="write" aria-selected="true">Write
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview"
+                                type="button" role="tab" aria-controls="preview" aria-selected="false">Preview
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content mt-2" id="markdownTabContent">
+                    <div class="tab-pane fade show active" id="write" role="tabpanel" aria-labelledby="write-tab">
+                        {{ form.content }}
+                    </div>
+                    <div class="tab-pane fade p-3 border bg-light" id="preview" role="tabpanel"
+                         aria-labelledby="preview-tab">
+                        <div id="markdown-preview">Nothing to preview.</div>
+                    </div>
                 </div>
             </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Create Article</button>
+        </form>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" action="{% url 'add-category' %}">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ category_form.as_p }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
         </div>
+    </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Create Article</button>
-    </form>
-</div>
 
-<!-- Load marked.js -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script>
-    const contentInput = document.getElementById("id_content");
-    const previewDiv = document.getElementById("markdown-preview");
+    <!-- Add Subcategory Modal -->
+    <div class="modal fade" id="addSubcategoryModal" tabindex="-1" aria-labelledby="addSubcategoryLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" action="{% url 'add-subcategory' %}">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Subcategory</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ subcategory_form.as_p }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    // Update preview when tab is clicked
-    document.getElementById("preview-tab").addEventListener("click", function () {
-        const markdownText = contentInput.value;
-        previewDiv.innerHTML = marked.parse(markdownText);
-    });
+
+
+    <!-- Load marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        const contentInput = document.getElementById("id_content");
+        const previewDiv = document.getElementById("markdown-preview");
+
+        // Update preview when tab is clicked
+        document.getElementById("preview-tab").addEventListener("click", function () {
+            const markdownText = contentInput.value;
+            previewDiv.innerHTML = marked.parse(markdownText);
+        });
 
 
         const imageInput = document.getElementById("id_image");
-    const imagePreview = document.getElementById("image-preview");
+        const imagePreview = document.getElementById("image-preview");
 
-    imageInput.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
+        imageInput.addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
 
-            reader.onload = function (e) {
-                imagePreview.src = e.target.result;
-                imagePreview.classList.remove("d-none");
-            };
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove("d-none");
+                };
 
-            reader.readAsDataURL(file);
-        } else {
-            imagePreview.classList.add("d-none");
-        }
-    });
-</script>
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.classList.add("d-none");
+            }
+        });
+    </script>
 {% endblock %}
