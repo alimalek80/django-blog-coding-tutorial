@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68398dc6-e433-4971-9b2e-e702b51da111" name="Changes" comment="user profile picture update and delete old profile picture while upload new one">
-      <change afterPath="$PROJECT_DIR$/accounts/migrations/0004_passwordresettoken.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/datixblog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/datixblog.iml" afterDir="false" />
+    <list default="true" id="68398dc6-e433-4971-9b2e-e702b51da111" name="Changes" comment="some changes">
+      <change afterPath="$PROJECT_DIR$/templates/markdownx/widget.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/articles/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/articles/templates/articles/create_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/articles/templates/articles/create_article.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datixblog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/datixblog/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base-dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-dashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +22,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -124,7 +126,8 @@
       <workItem from="1747378842745" duration="18550000" />
       <workItem from="1747480930896" duration="3578000" />
       <workItem from="1747552441453" duration="42594000" />
-      <workItem from="1747901032265" duration="577000" />
+      <workItem from="1747901032265" duration="3035000" />
+      <workItem from="1748382693809" duration="8739000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -174,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747641824786</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="some changes">
+      <option name="closed" value="true" />
+      <created>1747901903612</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747901903612</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +198,7 @@
     <MESSAGE value="make profile and change password functions" />
     <MESSAGE value="Password reset functionality and change password done." />
     <MESSAGE value="user profile picture update and delete old profile picture while upload new one" />
-    <option name="LAST_COMMIT_MESSAGE" value="user profile picture update and delete old profile picture while upload new one" />
+    <MESSAGE value="some changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes" />
   </component>
 </project>

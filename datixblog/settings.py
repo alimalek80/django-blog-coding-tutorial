@@ -147,6 +147,8 @@ MARKDOWNX_MARKDOWN_EXTENSIONS = [
 MARKDOWNX_MEDIA_URL = '/media/markdownx/'  # URL to access uploaded images
 MARKDOWNX_UPLOAD_CONTENT_TYPES = ['image/jpeg', 'image/png', 'image/gif']
 MARKDOWNX_UPLOAD_MAX_SIZE = 5 * 1024 * 1024  # 5 MB limit
+MARKDOWNX_EDITOR_RESIZABLE = True
+MARKDOWNX_SERVER_CALL_LATENCY = 500
 
 SITE_ID = 1  # Required for markdownx
 
